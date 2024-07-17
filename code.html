@@ -64,7 +64,7 @@
                             <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">The Repo</a>
+                            <a class="nav-link" href="https://github.com/hloism/FizzBuzz">The Repo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -81,12 +81,61 @@
             <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-javascript">
-                    function getValues2(){
-                    
-                        let inputMessage = document.getElementById("message").value;
-                        let alertMessage = document.getElementById("alertMessages");
-                        alertMessage.innerText = inputMessage;
-                    }
+//get the values from the user//
+
+function getValues(){
+let fizzValue = document.getElementById("fizzValue").value;
+let buzzValue = document.getElementById("buzzValue").value;
+let endValue = document.getElementById("endValue").value;
+
+//validate the input
+fizzValue = parseInt(fizzValue);
+buzzValue = parseInt(buzzValue);
+endValue = parseInt(endValue);
+
+
+if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue) && Number.isInteger(endValue) ){
+//generate fizzbuzz
+let fbValues = generateFizzBuzzC(fizzValue, buzzValue, endValue);
+//display fizzbuzz
+displayValues(fbValues);
+}
+}
+//generate fb with a loop and if statement
+function generateFizzBuzzA(fValue, bValue, eValue){
+let fbValues = [];
+
+for(let i = 1; i<=eValue; i++){
+     if (i % fValue==0 && i % bValue==0){
+         fbValues.push("FizzBuzz");
+         } else if (i % fValue==0){ 
+        fbValues.push("Fizz");
+         } else if (i % bValue==0){
+         fbValues.push("Buzz");
+        }else { fbValues.push(i); 
+        } 
+    }
+    return fbValues; }
+    
+    //display the values on the page 
+    function displayValues(fbValues){  
+         let results = document.getElementById("resultsData");
+          let content="" ;
+          
+    //Loop over the fbValues array
+    for(let i=0; i< fbValues.length; i++){
+         let dataValue=fbValues[i]; 
+         let cssClass="" ;
+        if (Number.isInteger(dataValue)){ 
+            cssClass="NoFB" ;
+         } else{ cssClass=dataValue;
+         }
+        let divElement=`<div class="col ${cssClass}">${dataValue}</div>`;
+        content += divElement;
+    }
+
+    results.innerHTML = content;
+}
                     </code>
                 </pre>
             </div>
